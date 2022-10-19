@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uq7tjbV3HWYAke7CeTeN+32YQl77E+jftKkCwwq7zCjX/ZxN5D8KNhVly6A91tzjkg21RPE1DF3pY3/9fLdmrg==",
+  "dgSpecHash": "gadirtI28HFkwzJNO7LZX2LbivCCT99sB9lGIR3Dym9ighl3EsBIuEVcJyErGSlxaYE+UHHpV9Y3JJMawlhDpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\svega\\Desktop\\File\\Entrada Engee\\Web\\Web.csproj",
+  "projectFilePath": "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Entrada Engee\\Web\\Web.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\svega\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\svega\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
+    "C:\\Users\\Sebastian\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
