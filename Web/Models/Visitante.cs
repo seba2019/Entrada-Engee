@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Web.Models
 {
-    public class Renaper
+    public class Visitante
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }

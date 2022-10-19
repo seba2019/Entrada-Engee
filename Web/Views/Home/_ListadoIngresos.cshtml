@@ -1,16 +1,32 @@
 ﻿@using Web.ViewModels;
 @model List<VisitasVm>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <h3><strong>Historial de visistas</strong></h3>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Id)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Fecha)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Hora)</th>
+                    <th>Persona visitada</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Fecha</td>
+                        <td>@item.Hora</td>
+                        <td>@item.Nombre @item.Apellido</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

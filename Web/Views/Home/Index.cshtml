@@ -1,8 +1,10 @@
 ﻿@using Web.ViewModels;
-@model List<VisitasVm>
+@model HomeVm
 @{
     ViewData["Title"] = "Entradas Engee";
 }
 
-<partial name="_entrada.cshtml"></partial>
-<partial name="_ListadoIngresos.cshtml" for="@Model"></partial>
+<partial name="_entrada.cshtml" for="@Model.Visita" view-data="@ViewData"></partial>
+<div id="divContent">
+    <partial name="_ListadoIngresos.cshtml" for="@Model.ListVisitas"></partial>
+</div>

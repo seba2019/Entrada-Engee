@@ -10,7 +10,8 @@ namespace Web.ViewModels
         public int Id { get; set; }
         public string Fecha { get; set; }
         public string Hora { get; set; }
-        public string PersonaVisitada { get; set; }
-        
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+
     }
 }

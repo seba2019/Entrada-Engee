@@ -1,4 +1,6 @@
-﻿<div class="card m-3">
+﻿@model Web.ViewModels.VisitasVm
+
+<div class="card m-3">
     <div class="card-header">
         <h3><strong>Datos visita</strong></h3>
     </div>
@@ -8,14 +10,16 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>DNI</label>
-                        <input class="form-control" maxlength="8"/>
-                        <button class="btn btn-warning">Consultar</button>
+                        <input id="inputDni" class="form-control" maxlength="8"/>
+                        <button class="btn btn-warning" onclick="buscarVisitante()">Consultar</button>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>Nombre y Apellido</label>
-                        <span>Lorena Laurenza</span>
+                        <div>
+                            <strong id="nombreCompletoVisitante">---</strong>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,7 +36,9 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Fecha de ingreso</label>
-                                <span>26/07/2019</span>
+                                <div>
+                                    @DateTime.Now.ToString("dd/MM/yyyy")
+                                </div>
                             </div>
                         </div>
 
@@ -41,14 +47,24 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>Hora de ingreso</label>
+                        <div>
+                            @DateTime.Now.ToString("HH:mm")
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <label>Sector</label>
-                    <select onchange="changeSector()">
+                    <select id="selectSector" onchange="changeSector()">
                         <option>Seleccione sector de la persona visitada </option>
+                        @{ 
+                            List<string> sectores = (List<string>)ViewData["sectores"];
+                        }
+                        @foreach (string item in sectores) 
+                        {
+                            <option value="@item">@item</option>
+                        }
                     </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
