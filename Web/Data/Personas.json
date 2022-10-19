@@ -1,0 +1,103 @@
+[
+  {
+    "Nombre": "Daniel",
+    "Apellido": "de Almeida",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Dario",
+    "Apellido": "Riva",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Diego",
+    "Apellido": "Pellegrini",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Federico",
+    "Apellido": "Musso",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Laura",
+    "Apellido": "Rodriguez",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Lautaro Ariel",
+    "Apellido": "Basanta",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Manuel",
+    "Apellido": "Castello",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Paula",
+    "Apellido": "Barrios",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Rocio",
+    "Apellido": "Diaz",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Sebastian",
+    "Apellido": "Parasis",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Walter",
+    "Apellido": "Marcote",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Guillermo",
+    "Apellido": "Balcarcel",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Esteban",
+    "Apellido": "Gawron",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Enzo",
+    "Apellido": "Peddini",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Andrea",
+    "Apellido": "Russo",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Adrian",
+    "Apellido": "Zarate",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Melisa",
+    "Apellido": "Yune",
+    "Sector": "QA"
+  },
+  {
+    "Nombre": "Nicolas",
+    "Apellido": "Russmann",
+    "Sector": "COMERCIAL"
+  },
+  {
+    "Nombre": "Galo",
+    "Apellido": "Trillo",
+    "Sector": "RRHH"
+  },
+  {
+    "Nombre": "Diego",
+    "Apellido": "Pellegrini",
+    "Sector": "QA"
+  }
+
+]

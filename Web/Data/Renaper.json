@@ -1,0 +1,26 @@
+[
+  {
+    "apellido": "Alvares",
+    "nombres": "Pedro",
+    "fechaNacimiento": "25/03/1972",
+    "dni": "25436789"
+  },
+  {
+    "apellido": "Perez",
+    "nombres": "Emanuel",
+    "fechaNacimiento": "03/07/1980",
+    "dni": "20369789"
+  },
+  {
+    "apellido": "Maquez",
+    "nombres": "Jose",
+    "fechaNacimiento": "05/01/1962",
+    "dni": "25436789"
+  },
+  {
+    "apellido": "Gonzalez",
+    "nombres": "Miguel",
+    "fechaNacimiento": "02/09/1977",
+    "dni": "24785125"
+  }
+]
