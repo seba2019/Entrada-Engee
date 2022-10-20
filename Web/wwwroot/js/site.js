@@ -13,12 +13,12 @@
             {
                 if (e != null)
                 {
-
+                    $("#nombreCompletoVisitante").val();
                 }
             },
             error: () =>
             {
-
+                console.log("ocurrio un error")
             }
         })
     }
@@ -53,4 +53,12 @@ function deleteVisita()
     });
 
     myModal.show();
+}
+
+function actualTime()
+{
+    var hours = new Date().getHours();
+    var min = new Date().getMinutes();
+    var time = hours.toString() + ":" + min.toString();
+    return time.toString();
 }

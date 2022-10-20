@@ -13,7 +13,7 @@
                     <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Fecha)</th>
                     <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Hora)</th>
                     <th>Persona visitada</th>
-                    <th>Acciones</th>
+                    <th class="text-center">Acciones</th>
                     
                 </tr>
             </thead>
@@ -25,7 +25,7 @@
                         <td>@item.Fecha</td>
                         <td>@item.Hora</td>
                         <td>@item.Nombre @item.Apellido</td>
-                        <td><a href="#" class="btn btn-outline-primary"><i class="fa fa-trash"></i></a></td>
+                        <td class="text-center"><a href="#" class="btn btn-outline-primary"><i class="fa fa-trash"></i></a></td>
                     </tr>
                 }
             </tbody>

@@ -4,8 +4,11 @@
     ViewData["Title"] = "Entradas Engee";
 }
 
-<partial name="_entrada.cshtml" for="@Model.Visita" view-data="@ViewData"></partial>
-<div id="divContent">
+<div id="divEntradas" class="mt-3">
+    <partial name="_entrada.cshtml" for="@Model.Visita" view-data="@ViewData" ></partial>
+</div>
+
+<div id="divContent" class="mt-3">
     <partial name="_ListadoIngresos.cshtml" for="@Model.ListVisitas"></partial>
 </div>
 
