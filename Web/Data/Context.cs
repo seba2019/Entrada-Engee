@@ -8,51 +8,34 @@ using System.Threading.Tasks;
 
 namespace Web.Data
 {
+    public class Context 
+    {
+        private string _pathPersonas = "Data\\Personas.json";
+        private string _pathVisitantes = "Data\\Visitante.json";
+        public List<Persona> Personas { get; set; }
+        public List<Visitante> Visitantes { get; set; }
+        public Context() 
+        {
+            //personas
+            string fullPathPersonas = Path.GetFullPath(_pathPersonas);
+            string jsonPersonas = File.ReadAllText(fullPathPersonas);
+            Personas = JsonConvert.DeserializeObject<List<Persona>>(jsonPersonas);
+
+            //Visitantes
+            string fullPathVisitantes = Path.GetFullPath(_pathVisitantes);
+            string jsonVisitantes = File.ReadAllText(fullPathVisitantes);
+            Visitantes = JsonConvert.DeserializeObject<List<Visitante>>(jsonVisitantes);
+        }
+    }
     public class Persona
     {
-        private readonly IWebHostEnvironment _webHost;
-        private readonly List<Persona> _listPersonas;
-        public Persona(IWebHostEnvironment webHost)
-        {
-            _webHost = webHost;
-            string pathJsonPersonas = Path.Combine(_webHost.ContentRootPath, "Data/Personas.json");
-            using (StreamReader jsonStreamPersonas = System.IO.File.OpenText(pathJsonPersonas))
-            {
-                var jsonPersonas = jsonStreamPersonas.ReadToEnd();
-                _listPersonas = JsonConvert.DeserializeObject<List<Persona>>(jsonPersonas);
-            }
-        }
-        public List<Persona> Personas
-        {
-            get
-            {
-                return _listPersonas;
-            }
-        }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Sector { get; set; }
-
     }
 
-    public class Renaper
+    public class Visitante
     {
-        private readonly IWebHostEnvironment _webHost;
-        private readonly List<Renaper> _renapers;
-        public Renaper(IWebHostEnvironment webHost)
-        {
-            _webHost = webHost;
-            string pathJsonRenaper = Path.Combine(_webHost.ContentRootPath, "Data/Visitante.json");
-            using (StreamReader jsonStreamRenaper = System.IO.File.OpenText(pathJsonRenaper))
-            {
-                var jsonRenaper = jsonStreamRenaper.ReadToEnd();
-                _renapers = JsonConvert.DeserializeObject<List<Renaper>>(jsonRenaper);
-            }
-        }
-        public List<Renaper> Renapers
-        {
-            get { return _renapers; }
-        }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string FechaNacimiento { get; set; }

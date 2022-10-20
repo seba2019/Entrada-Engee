@@ -5,91 +5,80 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Web.ViewModels;
 using System.Linq;
+using Web.Data;
+using Web.Models;
 
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
 
-        private readonly List<Personas> _listPersonas;
-        private readonly List<Visitante> _visitantes;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly List<VisitasVm> _listVisitasRandom;
+        private readonly List<VisitasVm> _historialVisitas;
+        private Context _context;
 
-        public HomeController(IWebHostEnvironment webHostEnvironment)
+        public HomeController(Context context)
         {
-            _webHostEnvironment = webHostEnvironment;
-            _listVisitasRandom = new List<VisitasVm>();
-            string pathJsonPersonas = Path.Combine(_webHostEnvironment.ContentRootPath, "Data/Personas.json");
-            string pathJsonVisitante = Path.Combine(_webHostEnvironment.ContentRootPath, "Data/Visitante.json");
-
-            using (StreamReader jsonStreamPersonas = System.IO.File.OpenText(pathJsonPersonas))
-            {
-                var jsonPersonas = jsonStreamPersonas.ReadToEnd();
-                _listPersonas = JsonConvert.DeserializeObject<List<Personas>>(jsonPersonas);
-            }
-
-            using (StreamReader jsonStreamVisitante = System.IO.File.OpenText(pathJsonVisitante))
-            {
-                var jsonVisitante = jsonStreamVisitante.ReadToEnd();
-                _visitantes = JsonConvert.DeserializeObject<List<Visitante>>(jsonVisitante);
-            }
-
-
+            _context = context;
             Random rd = new Random();
             int posRandom = 0;
-            Personas persona = new Personas();
-
+            Persona persona = new Persona();
+            _historialVisitas = new List<VisitasVm>();
             for (int i = 0; i < 10; i++)
             {
-                posRandom = rd.Next(0, _listPersonas.Count - 1);
-                persona = _listPersonas[posRandom];
+                posRandom = rd.Next(0, _context.Personas.Count - 1);
+                persona = _context.Personas[posRandom];
                 VisitasVm visita = new VisitasVm()
                 {
                     Id = i + 1,
                     Nombre = persona.Nombre,
                     Apellido = persona.Apellido,
-                    Hora = DateTime.Today.ToShortTimeString(),
+                    Hora = DateTime.Now.AddMinutes(-i).ToString("HH:mm"),
                     Fecha = DateTime.Today.Date.ToShortDateString()
                 };
-                _listVisitasRandom.Add(visita);
+                _historialVisitas.Add(visita);
             }
         }
 
         public IActionResult Index()
         {
-            var sectores = _listPersonas.Select(g => g.Sector).Distinct().ToList();
-            
+            var sectores = _context.Personas.Select(g => g.Sector).Distinct().ToList();
+
             ViewData["sectores"] = sectores;
             HomeVm model = new HomeVm()
             {
                 Visita = new VisitasVm(),
-                ListVisitas = _listVisitasRandom
+                ListVisitas = _historialVisitas
             };
             return View(model);
         }
 
-        public IActionResult AgregarVisita(VisitasVm visita)
+        public IActionResult AddVisita(VisitasVm visita)
         {
-            List<VisitasVm> visitas = _listVisitasRandom;
+            List<VisitasVm> visitas = _historialVisitas;
             visitas.Add(visita);
             return PartialView("_ListadoIngresos.cshtml",visitas);
         }
 
+        public IActionResult DeleteVisita(int id)
+        {
+            VisitasVm visita = _historialVisitas.Where(w => w.Id == id).FirstOrDefault();
+            _historialVisitas.Remove(visita);
+            return PartialView("_ListadoIngresos.cshtml", visita);
+        }
+
         public JsonResult GetVisitante(string dni) 
         {
-            Visitante visitante = _visitantes.Where(w => w.Dni == dni).FirstOrDefault();
+            Visitante visitante = _context.Visitantes.Where(w => w.Dni == dni).FirstOrDefault();
             return Json(visitante);
         }
         public JsonResult GetPersonasBySector(string sector)
         {
-            var personas = _listPersonas
+            var personas = _context.Personas
                                 .Where(p => p.Sector == sector)
                                 .Select(s => new { Nombre = s.Nombre, Apellido = s.Apellido })
                                 .ToList();

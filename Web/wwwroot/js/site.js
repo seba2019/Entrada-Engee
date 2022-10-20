@@ -44,3 +44,13 @@ function changeSector()
 
     });
 }
+
+function deleteVisita()
+{
+    var myModal = new bootstrap.Modal(document.getElementById("divModalConfirm"), {
+        keyboard: false,
+        backdrop: 'static'
+    });
+
+    myModal.show();
+}
