@@ -60,5 +60,10 @@ function actualTime()
     var hours = new Date().getHours();
     var min = new Date().getMinutes();
     var time = hours.toString() + ":" + min.toString();
-    return time.toString();
+    $("#actualTime").text(time);
+}
+
+function showTime()
+{
+    setTimeout(actualTime(), 1000);
 }
