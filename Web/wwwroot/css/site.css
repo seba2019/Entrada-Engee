@@ -72,3 +72,48 @@ body {
 label {
     font-weight: bold;
 }
+
+.fadeInOut-notification {
+    animation-name: fadeInNoti, fadeOutNoti;
+    animation-delay: 0s, 5s;
+    animation-duration: 1.3s, 2s;
+    animation-timing-function: ease, ease;
+    animation-fill-mode: forwards, forwards;
+}
+
+@keyframes fadeOutNoti {
+    from {
+        opacity: 1;
+        bottom: 5%;
+    }
+
+    to {
+        opacity: 0;
+        bottom: 0;
+    }
+}
+
+
+@keyframes fadeInNoti {
+    from {
+        opacity: 0;
+        bottom: 0;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 5%;
+    }
+}
+
+.notification {
+    position: fixed;
+    right: 5%;
+    bottom: 0%;
+    opacity: 0;
+    z-index: 99;
+}
+
+.alert-hide {
+    display:none;
+}

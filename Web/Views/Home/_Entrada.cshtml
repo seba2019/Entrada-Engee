@@ -5,81 +5,99 @@
         <h3><strong>Datos visita</strong></h3>
     </div>
     <div class="card-body">
- 
-        <div class="row">
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <label>DNI</label>
-                 <div class="input-group">
-                     <input id="inputDni" class="form-control" maxlength="8"/>
-                     <button class="btn btn-warning" onclick="buscarVisitante()">Consultar</button>
-                 </div>
-             </div>
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <div class="form-group">
-                     <label>Nombre y Apellido</label>
-                     <div>
-                         <strong id="nombreCompletoVisitante">---</strong>
-                     </div>
-                 </div>
-             </div>
-         </div>
-        <hr />
-        <div class="row">
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <div class="row">
-                     <div class="col">
-                         <div class="form-group">
-                             <label>Nro. de tarjeta de ingreso</label>
-                             <input class="form-control" placeholder="Ingrese numero" required/>
-                         </div>
-                     </div>
-                     <div class="col">
-                         <div class="form-group">
-                             <label>Fecha de ingreso</label>
-                             <div>
-                                @DateTime.Now.ToString("dd/MM/yyyy")
-                             </div>
-                         </div>
-                     </div>
+        <form
+            id="frmIngresos"
+            asp-action="AddVisita"
+            asp-controller="Home"
+            data-ajax="true"
+            data-ajax-update="#divListado"
+            data-ajax-method="replace"
+            data-ajax-failure="location.reload()"
+            data-ajax-complete="ingresoCompleto"
+         >
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                    <label>DNI</label>
+                    <div class="input-group">
+                        <input asp-for="Dni" id="inputDni" class="form-control onlyNumber" maxlength="8"/>
 
-                 </div>
-             </div>
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <div class="form-group">
-                     <label>Hora de ingreso</label>
-                     <div id="actualTime">
-               
-                     </div>
-                 </div>
-             </div>
-         </div>
-        <div class="row">
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <label>Sector</label>
-                 <select id="selectSector" onchange="changeSector()" class="form-control">
-                     <option>Seleccione sector de la persona visitada </option>
-                     @{ 
-                         List<string> sectores = (List<string>)ViewData["sectores"];
-                     }
-                     @foreach (string item in sectores) 
-                     {
-                         <option value="@item">@item</option>
-                     }
-                 </select>
-             </div>
-             <div class="col-lg-6 col-md-6 col-sm-12">
-                 <label>Persona visitada</label>
-                 <select id="selectPersona" class="form-control" disabled>
-                     <option>Selecciones persona</option>
-                 </select>
-             </div>
-         </div>
-        
-        <div class="row mt-3">
-            <div class="col-12">
-                <button class="btn btn-warning">Ingreso</button>
+                        <a href="#" class="btn btn-warning" onclick="buscarVisitante()">Consultar</a>
+                        <span asp-validation-for="Dni" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
+                    <div class="form-group">
+                        <label>Nombre y Apellido</label>
+                        <div>
+                            <p id="nombreCompletoVisitante">---</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Nro. de tarjeta de ingreso</label>
+                                <input asp-for="NroTarjetaIngreso" class="form-control onlyNumber" type="text" placeholder="Ingrese numero" />
+                                <span asp-validation-for="NroTarjetaIngreso" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Fecha de ingreso</label>
+                                <div>
+                                    @DateTime.Now.ToString("dd/MM/yyyy")
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Hora de ingreso</label>
+                        <div id="actualTime">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label>Sector</label>
+                    <select id="selectSector" onchange="changeSector()" class="form-control">
+                        <option>Seleccione sector de la persona visitada </option>
+                        @{
+                            List<string> sectores = (List<string>)ViewData["sectores"];
+                        }
+                        @foreach (string item in sectores)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label>Persona visitada</label>
+                    <select asp-for="Visito" id="selectPersona" class="form-control" disabled>
+                        <option value="">Selecciones persona</option>
+                    </select>
+                    @Html.HiddenFor(m=>m.Nombre)
+                    @Html.HiddenFor(m=>m.Apellido)
+                </div>
+            </div>
+            @Html.Hidden("Fecha", DateTime.Now.ToString("dd/MM/yyyy"))
+            @Html.Hidden("Hora")
+            @Html.Hidden(Model.NroTarjetaIngreso)
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button class="btn btn-warning">Ingreso</button>
+                </div>
+            </div>
+        </form>
+
   
     </div>
 </div>

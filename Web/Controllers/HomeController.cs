@@ -18,57 +18,80 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
 
-        private readonly List<VisitasVm> _historialVisitas;
         private Context _context;
+        private List<VisitasVm> _listVisitas;
 
         public HomeController(Context context)
         {
             _context = context;
-            Random rd = new Random();
-            int posRandom = 0;
-            Persona persona = new Persona();
-            _historialVisitas = new List<VisitasVm>();
-            for (int i = 0; i < 10; i++)
+            List<VisitasVm> listVisitas = new List<VisitasVm>();
+            foreach (HistorialVisitas visitas in _context.HistorialVisitas)
             {
-                posRandom = rd.Next(0, _context.Personas.Count - 1);
-                persona = _context.Personas[posRandom];
-                VisitasVm visita = new VisitasVm()
+                VisitasVm visitasVm = new VisitasVm()
                 {
-                    Id = i + 1,
-                    Nombre = persona.Nombre,
-                    Apellido = persona.Apellido,
-                    Hora = DateTime.Now.AddMinutes(-i).ToString("HH:mm"),
-                    Fecha = DateTime.Today.Date.ToShortDateString()
+                    Nombre = visitas.Nombre,
+                    Apellido = visitas.Apellido,
+                    Fecha = visitas.Fecha,
+                    Hora = visitas.Hora,
+                    Id = visitas.id,
+                    Visito = visitas.Visito
                 };
-                _historialVisitas.Add(visita);
+                listVisitas.Add(visitasVm);
             }
+            _listVisitas = listVisitas;
         }
 
         public IActionResult Index()
         {
             var sectores = _context.Personas.Select(g => g.Sector).Distinct().ToList();
-
+   
             ViewData["sectores"] = sectores;
             HomeVm model = new HomeVm()
             {
                 Visita = new VisitasVm(),
-                ListVisitas = _historialVisitas
+                ListVisitas = _listVisitas
             };
+
             return View(model);
         }
 
         public IActionResult AddVisita(VisitasVm visita)
         {
-            List<VisitasVm> visitas = _historialVisitas;
-            visitas.Add(visita);
-            return PartialView("_ListadoIngresos.cshtml",visitas);
+
+            if (!ModelState.IsValid) 
+            {
+                ViewData["errorMsg"] = "Datos incorrectos";
+                return PartialView("_ListadoIngresos.cshtml", _listVisitas);
+            }
+
+            visita.Id = _listVisitas.Last().Id + 1;
+            HistorialVisitas historialVisitas = new HistorialVisitas()
+            {
+                id = visita.Id,
+                Nombre = visita.Nombre,
+                Apellido = visita.Apellido,
+                Fecha = visita.Fecha,
+                Hora = visita.Hora,
+                Visito = visita.Visito
+            };
+            _context.HistorialVisitas.Add(historialVisitas);
+            _context.Save();
+
+            return PartialView("_ListadoIngresos.cshtml", _listVisitas);
         }
 
         public IActionResult DeleteVisita(int id)
         {
-            VisitasVm visita = _historialVisitas.Where(w => w.Id == id).FirstOrDefault();
-            _historialVisitas.Remove(visita);
-            return PartialView("_ListadoIngresos.cshtml", visita);
+            HistorialVisitas historialVisitas = _context
+                                                .HistorialVisitas
+                                                .Where(w => w.id == id)
+                                                .FirstOrDefault();
+
+            _context.HistorialVisitas.Remove(historialVisitas);
+            _context.Save();
+            VisitasVm visitas = _listVisitas.Where(w => w.Id == id).FirstOrDefault();
+            _listVisitas.Remove(visitas);
+            return PartialView("_ListadoIngresos", _listVisitas);
         }
 
         public JsonResult GetVisitante(string dni) 

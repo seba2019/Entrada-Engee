@@ -89,3 +89,5 @@ C:\Users\svega\Desktop\File\Engee\Web\obj\Debug\net5.0\ref\Web.dll
 C:\Users\svega\Desktop\File\Engee\Web\obj\Debug\net5.0\Web.pdb
 C:\Users\svega\Desktop\File\Engee\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
 C:\Users\svega\Desktop\File\Engee\Web\obj\Debug\net5.0\Razor\Views\Shared\_ModalConfirm.cshtml.g.cs
+C:\Users\svega\Desktop\File\Engee\Web\obj\Debug\net5.0\Razor\Views\Shared\_Notifications.cshtml.g.cs
+C:\Users\svega\Desktop\File\Engee\Web\bin\Debug\net5.0\Data\HistorialVisitas.json
