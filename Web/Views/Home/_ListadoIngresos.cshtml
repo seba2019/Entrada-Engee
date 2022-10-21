@@ -18,7 +18,7 @@
             </thead>
             <tbody>
   
-                @foreach (VisitasVm item in Model)
+                @foreach (VisitasVm item in Model.OrderByDescending(o=>o.Id).ToList())
                 {
                     <tr>
                         <td>@item.Id</td>

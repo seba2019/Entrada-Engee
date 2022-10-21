@@ -108,6 +108,16 @@ namespace Web.Controllers
             return Json(personas);
         }
 
+        public IActionResult Notify(string msg, string type)
+        {
+            Notification notification = new Notification() 
+            {
+                Message = msg,
+                Type = type
+            };
+            return PartialView("_Notifications",notification);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

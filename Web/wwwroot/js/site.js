@@ -16,9 +16,22 @@ $(document).ready(() => {
 
 var Message = {
     show: (m, t) => {
-        $("#alert-text").text(m);
-        $("#divAlert").addClass(t);
-        $("#divAlert").removeClass("alert-hide");
+        $.ajax({
+            url: "Home/Notify",
+            method: "get",
+            data: {
+                msg: m,
+                type: t
+            },
+            success: (e) =>
+            {
+                $("#divNotify").html(e)
+            },
+            error: (e) =>
+            {
+                console.log(e)
+            }
+        })
     }
 }
 

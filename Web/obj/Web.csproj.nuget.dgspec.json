@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\svega\\Desktop\\File\\Engee\\Web\\Web.csproj": {}
+    "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Web\\Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\svega\\Desktop\\File\\Engee\\Web\\Web.csproj": {
+    "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\svega\\Desktop\\File\\Engee\\Web\\Web.csproj",
+        "projectUniqueName": "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "C:\\Users\\svega\\Desktop\\File\\Engee\\Web\\Web.csproj",
-        "packagesPath": "C:\\Users\\svega\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\svega\\Desktop\\File\\Engee\\Web\\obj\\",
+        "projectPath": "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\Sebastian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sebastian\\Desktop\\Files\\engee\\Net core 5\\Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\svega\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sebastian\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,12 +55,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.15, 5.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -69,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

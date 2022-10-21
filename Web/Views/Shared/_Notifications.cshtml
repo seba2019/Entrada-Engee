@@ -1,9 +1,11 @@
-﻿<div id="divAlert" class="alert notification fadeInOut-notification alert-hide" role="alert">
+﻿@model Web.ViewModels.Notification
+
+<div id="divAlert" class="alert notification fadeInOut-notification @Model.Type" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     <p id="alert-text">
-
+        @Model.Message
     </p>
 
 </div>
